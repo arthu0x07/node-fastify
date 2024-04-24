@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "lint": "eslint src --ext .ts --fix"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
+    "@rocketseat/eslint-config": "^2.2.2",
     "@types/node": "^20.12.7"
   }
 }
