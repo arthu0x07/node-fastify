@@ -1,7 +1,6 @@
-import { expect, it, beforeAll, afterAll } from 'vitest'
+import { expect, it, beforeAll, afterAll, describe } from 'vitest'
 import request from 'supertest'
 import { app } from '../src/app'
-import { describe } from 'node:test'
 
 describe('Transaction Routes', () => {
   beforeAll(async () => {
