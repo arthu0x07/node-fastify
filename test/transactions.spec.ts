@@ -83,4 +83,36 @@ describe('Transaction Routes', () => {
       }),
     )
   })
+
+  it('should be able to get the sumary', async () => {
+    const createTransactionResponse = await request(app.server)
+      .post('/transactions')
+      .send({
+        title: 'New transaction',
+        amount: 5000,
+        type: 'credit',
+      })
+
+    const cookies = createTransactionResponse.get('Set-Cookie') || []
+
+    await request(app.server)
+      .post('/transactions')
+      .set('Cookie', cookies)
+      .send({
+        title: 'New transaction',
+        amount: 2000,
+        type: 'debit',
+      })
+
+    const sumaryResponse = await request(app.server)
+      .get('/transactions/sumary')
+      .set('Cookie', cookies)
+      .expect(200)
+
+    console.log(sumaryResponse)
+
+    expect(sumaryResponse.body.sumary).toEqual(
+      expect.objectContaining({ amount: 3000 }),
+    )
+  })
 })
